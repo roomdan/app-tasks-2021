@@ -1,10 +1,9 @@
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 // import { useReducer } from "react"
-import { Redirect, useHistory } from "react-router"
+import { Redirect, useHistory } from "react-router-dom"
 import {AppLog} from "../../context/logs/LogSesion"
 import "./home.styles.scss"
 import "./animation.css"
-import { useState } from "react/cjs/react.development"
 
 // const initialState = {
 //     go:true
@@ -52,8 +51,7 @@ const Home = ({charging})=>{
                 </div>
                 <section className='w-full section-tasks'></section>
             </div>
-
-        ): <Redirect to='/'/>
+        ):<Redirect to='/'/>
     )
 }
 

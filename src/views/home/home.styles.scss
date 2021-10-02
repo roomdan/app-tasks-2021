@@ -1,0 +1,81 @@
+.all-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: linear-gradient(360deg, #f75a51, #c6434b);
+    .h-hd-tsks{
+        width: 100%;
+        min-height: 5rem;
+        border-radius: 1.2rem;
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        background-color: rgba(255, 255, 255, 0.048);
+        backdrop-filter: blur(10px);
+        transition: background-color 0.5s linear;
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.171);
+            transition: background-color 0.5s linear;
+        }
+        .items-laterals{
+            display: flex;
+            height: 100%;
+            width: 10%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .logo-btn{
+                width: 3rem;
+                height: 3rem;
+                background: url("./tsklogo.svg") ;
+                background-repeat: no-repeat;
+            }
+            .config-btn{
+                width: 3rem;
+                height: 3rem;
+                background: url("./config.svg") ;
+                background-repeat: no-repeat;
+            }
+        }
+        .form-add {
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .add-task{
+                padding: 0.5rem;
+                background-color: white;
+                display: flex;
+                .img-ux{
+                    width: 2rem;
+                    height: 2rem;
+                    background: url(./lupa.svg);
+                    background-repeat: no-repeat;
+                    margin: 0.5rem;
+                }
+                .input-task{
+                    background: transparent;
+                    outline: none;
+                }
+                .btn-task {
+                    background: #4e4c4e;
+                    color: white;
+                    font-weight: 600;
+                    border-radius: 5px;
+                    padding: 0.5rem;
+                }
+            }
+        }
+    }
+
+    .section-tasks {
+        margin-top: 2rem;
+        min-height: 20rem;
+        border-radius: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}

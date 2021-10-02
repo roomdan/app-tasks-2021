@@ -3,7 +3,6 @@ import LogIn from "./context/logs/LogSesion";
 import Register from "./views/Log-In-Form//register.js"
 import Home from "./views/home/Home.js"
 
-
 function App() {
 
   return (

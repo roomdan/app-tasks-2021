@@ -8,7 +8,7 @@ import "./animation.all.css"
 
 export default function Register () {
 
-    
+
     const [register, setRegister] = useContext(AppLog);
 
     const [mov, setMov] = useState({opacity:'', display:''})
@@ -31,8 +31,9 @@ export default function Register () {
     }
 
     const logged = ()=>{
-        setNexStep(false)
+        // setNexStep(false)
         setRegister({...register, onSesion:true})
+        history.push('/home')
     }
 
     return (
@@ -53,7 +54,7 @@ export default function Register () {
                       Name or Username
                       <input placeholder='@username' className='register-input'/>
                       <p className='text-sm text-gray  mt-2'>This field is necesary*</p>
-                      <button className='m-3 font-bold text-2xl' onClick={()=>{movingEfect()}} type='button'>Next{'>'}</button>
+                      <button className='m-3 font-bold text-2xl' onClick={movingEfect} type='button'>Next{'>'}</button>
                   </label>
                   <label className='font-bold' style={{display:newt.display, opacity:newt.opacity}}>
                       Password

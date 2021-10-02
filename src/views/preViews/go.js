@@ -12,7 +12,7 @@ const Go = ({none, start})=>{
   },[start])
 
     return <div style={{opacity:op}} className='transition w-screen h-screen bg-white flex justify-center items-center'>
-            <button onClick={()=>{none(false)}}><h1 className='title'> We start? </h1></button>
+            <button onClick={()=>{none(false)}}><h2 className='title'> We start? </h2></button>
     </div>
 }
 

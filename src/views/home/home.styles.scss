@@ -26,12 +26,14 @@
             align-items: center;
 
             .logo-btn{
+                margin: 5px;
                 width: 3rem;
                 height: 3rem;
                 background: url("./tsklogo.svg") ;
                 background-repeat: no-repeat;
             }
             .config-btn{
+                margin: 5px;
                 width: 3rem;
                 height: 3rem;
                 background: url("./config.svg") ;
@@ -44,21 +46,24 @@
             justify-content: center;
             align-items: center;
             .add-task{
-                padding: 0.5rem;
                 background-color: white;
                 display: flex;
+                justify-content: center;
+                align-items: center;
                 .img-ux{
-                    width: 2rem;
-                    height: 2rem;
+                    width: 10%;
+                    height: 1.5rem;
                     background: url(./lupa.svg);
                     background-repeat: no-repeat;
                     margin: 0.5rem;
                 }
                 .input-task{
+                    width: 70%;
                     background: transparent;
                     outline: none;
                 }
                 .btn-task {
+                    width: 20%;
                     background: #4e4c4e;
                     color: white;
                     font-weight: 600;

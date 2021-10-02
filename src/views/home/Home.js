@@ -37,14 +37,14 @@ const Home = ({charging})=>{
 
     return (
         log.onSesion?(
-            <div className='w-screen h-screen p-5 all-page'>
+            <div className='w-screen h-screen  md:p-3 p-1 all-page'>
                 <div id='animation' style={{top:anim}} className='h-hd-tsks'>
                     <div className='items-laterals'><button className='logo-btn' onClick={()=>{history.goBack()}}></button></div>
                     <form className='form-add'>
-                        <label className='add-task rounded'>
+                        <label className='add-task rounded md:w-1/2 w-full'>
                             <div className='img-ux'></div>
                             <input className='input-task md:w-80 w-36 '/>
-                            <button type='button' className='btn-task'>Add Task</button>
+                            <button type='button' className='btn-task'>Add</button>
                         </label>
                     </form>
                     <div className='items-laterals'><button className='config-btn' onClick={()=>{console.log('config')}}></button></div>

@@ -12,7 +12,7 @@ import { useState } from "react/cjs/react.development"
 
 const Home = ({charging})=>{
 
-    const [anim, setAnim ] = useState('')
+    const [anim, setAnim ] = useState('');
 
     const history = useHistory()
     const [log] = useContext(AppLog)
@@ -25,7 +25,6 @@ const Home = ({charging})=>{
     //             return state.go = true
     //     }
     // }
-
 
     // const [state, dispatch] = useReducer(reducer, initialState)
 

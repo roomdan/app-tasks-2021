@@ -33,7 +33,7 @@ const Home = ({charging})=>{
 
     const ctta = taskings?taskings.map((e,i)=>{
         const result = ()=>e.isCompleted === true?'Resolved':'Unresolved'
-        return  <TasksUi index={i+1} name={'Daniel'} task={e.task} status={result()} key={e.id}/>
+        return  <TasksUi index={i+1} name={'Daniel'} task={e.task} id={e.id} status={result()} key={e.id}/>
     }):'...loading...'
 
     return (

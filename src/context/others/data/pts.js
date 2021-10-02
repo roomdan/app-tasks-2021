@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const gtsks = async()=>{
-  return  axios(
+  return await axios(
         {
             method:'GET',
             baseURL:'https://todos-go.herokuapp.com/api/todos',
@@ -11,4 +11,17 @@ const gtsks = async()=>{
 
 }
 
-export {gtsks}
+
+const dtsks = async (id)=>{
+    return await axios (
+        {
+            method:'DELETE',
+            baseURL:'https://todos-go.herokuapp.com/api/todos',
+            url:id
+        }
+    )
+}
+
+
+export {gtsks, dtsks}
+

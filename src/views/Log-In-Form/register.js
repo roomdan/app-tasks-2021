@@ -59,7 +59,7 @@ export default function Register () {
                       <button className='text-blue text-2xl m-3 font-bold rounded' onClick={logged} type='button'>Finalize</button>
                   </label>
               </form>
-          </div>:<div className='log-in-go-back md:h-80 h-screen p-5 text-center'>
+          </div>:<div className='log-in-go-back md:h-80 h-1/2 p-5 text-center'>
               <h1 className='title'> ¡ Hello ! </h1>
               <p className='m-5 text-2xl'>Whoops! This view is not available because you have already logged in. Choose one of the following options:</p>
               <Link className='m-2 text-blue font-bold' to='/home'>Go Back</Link> <button className='m-2 text-red font-bold' onClick={()=>{setRegister({...register, onSesion:false})}}>Sign off</button>

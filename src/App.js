@@ -7,16 +7,16 @@ function App() {
 
   return (
      <Router>
-       <LogIn>
          <Switch>
+           <LogIn>
            <Route exact path='/'>
               <Register/>
            </Route>
            <Route exact path='/home'>
              <Home charging={true}></Home>
            </Route>
+           </LogIn>
          </Switch>
-       </LogIn>
      </Router>
   );
 }

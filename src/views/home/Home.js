@@ -4,6 +4,7 @@ import { Redirect, useHistory } from "react-router-dom"
 import {AppLog} from "../../context/logs/LogSesion"
 import "./home.styles.scss"
 import "./animation.css"
+import TasksUi from "../../components/tasksUi/tasksui"
 
 // const initialState = {
 //     go:true
@@ -39,17 +40,19 @@ const Home = ({charging})=>{
         log.onSesion?(
             <div className='w-screen h-screen  md:p-3 p-1 all-page'>
                 <div id='animation' style={{top:anim}} className='h-hd-tsks'>
-                    <div className='items-laterals'><button className='logo-btn' onClick={()=>{history.goBack()}}></button></div>
+                    <div className='items-laterals'><button className='logo-btn md:h-12 h-8' onClick={()=>{history.goBack()}}></button></div>
                     <form className='form-add'>
                         <label className='add-task rounded md:w-1/2 w-full'>
                             <div className='img-ux'></div>
                             <input className='input-task md:w-80 w-36 '/>
-                            <button type='button' className='btn-task'>Add</button>
+                            <button type='button' className='btn-task rounded'>Add</button>
                         </label>
                     </form>
-                    <div className='items-laterals'><button className='config-btn' onClick={()=>{console.log('config')}}></button></div>
+                    <div className='items-laterals'><button className='config-btn md:h-12 h-8' onClick={()=>{console.log('config')}}></button></div>
                 </div>
-                <section className='w-full section-tasks'></section>
+                <section className='w-full section-tasks p-3'>
+                    <TasksUi index={1} name={'Daniel'} task={'terminar la tarea de fisica'} status={'unresolved'}/>
+                </section>
             </div>
         ):<Redirect to='/'/>
     )

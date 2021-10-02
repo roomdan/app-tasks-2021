@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     background-image: linear-gradient(360deg, #f75a51, #c6434b);
+    overflow-x: hidden;
     .h-hd-tsks{
         width: 100%;
         min-height: 5rem;

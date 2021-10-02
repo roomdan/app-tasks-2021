@@ -1,14 +1,10 @@
 import { useContext, useEffect, useState } from "react"
-// import { useReducer } from "react"
 import { Redirect, useHistory } from "react-router-dom"
 import {AppLog} from "../../context/logs/LogSesion"
 import "./home.styles.scss"
 import "./animation.css"
 import TasksUi from "../../components/tasksUi/tasksui"
-
-// const initialState = {
-//     go:true
-// }
+import { GetTasks } from "../../context/others/data/tasks"
 
 const Home = ({charging})=>{
 
@@ -17,16 +13,6 @@ const Home = ({charging})=>{
     const history = useHistory()
     const [log] = useContext(AppLog)
 
-    // const reducer = (state, action)=>{
-    //     switch (action.type){
-    //         case 'GO':
-    //             return state.go = false
-    //         default:
-    //             return state.go = true
-    //     }
-    // }
-
-    // const [state, dispatch] = useReducer(reducer, initialState)
 
     useEffect(
         ()=>{
@@ -35,10 +21,24 @@ const Home = ({charging})=>{
             }
         },[charging]
     )
+    
+    const [data] = useContext(GetTasks);
+    const [taskings, setTaskings] = useState('')
+
+    useEffect(()=>{
+        if(data){setTaskings(data)}
+    },[data])
+
+    if(taskings) {console.log(taskings)}
+
+    const ctta = taskings?taskings.map((e,i)=>{
+        const result = ()=>e.isCompleted === true?'Resolved':'Unresolved'
+        return  <TasksUi index={i+1} name={'Daniel'} task={e.task} status={result()} key={e.id}/>
+    }):'...loading...'
 
     return (
         log.onSesion?(
-            <div className='w-screen h-screen  md:p-3 p-1 all-page'>
+            <div className='w-full min-h-full	 md:p-3 p-1 all-page'>
                 <div id='animation' style={{top:anim}} className='h-hd-tsks'>
                     <div className='items-laterals'><button className='logo-btn md:h-12 h-8' onClick={()=>{history.goBack()}}></button></div>
                     <form className='form-add'>
@@ -50,8 +50,8 @@ const Home = ({charging})=>{
                     </form>
                     <div className='items-laterals'><button className='config-btn md:h-12 h-8' onClick={()=>{console.log('config')}}></button></div>
                 </div>
-                <section className='w-full section-tasks p-3'>
-                    <TasksUi index={1} name={'Daniel'} task={'terminar la tarea de fisica'} status={'unresolved'}/>
+                <section className='w-screen min-h-full section-tasks p-3'>
+                    {ctta}
                 </section>
             </div>
         ):<Redirect to='/'/>

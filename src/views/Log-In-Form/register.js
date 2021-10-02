@@ -30,9 +30,8 @@ export default function Register () {
     }
 
     const logged = ()=>{
-        // setNexStep(false)
+        setNexStep(false)
         setRegister({...register, onSesion:true})
-        history.push('/home')
     }
 
     return (

@@ -6,18 +6,18 @@ import Home from "./views/home/Home.js"
 function App() {
 
   return (
+    <LogIn>
      <Router>
          <Switch>
-           <LogIn>
            <Route exact path='/'>
               <Register/>
            </Route>
            <Route exact path='/home'>
              <Home charging={true}></Home>
            </Route>
-           </LogIn>
          </Switch>
      </Router>
+     </LogIn>
   );
 }
 

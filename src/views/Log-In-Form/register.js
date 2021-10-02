@@ -41,7 +41,7 @@ export default function Register () {
       </div>
       <div id='log-in-box-register mt-2' className='w-full h-auto bg-transparent flex justify-center items-center'>
               {!register.onSesion ? <div className='register-continer'>
-              <a className='w-screen' href='/'><h1> Login and manage your tasks </h1></a>
+              <a className='w-screen md:w1/2 m-1' href='/'><h1> Login and manage your tasks </h1></a>
               <form className='register-form '>
                   <label className='font-bold' style={{
                       opacity:mov.opacity,

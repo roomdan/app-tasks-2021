@@ -12,26 +12,39 @@ export default function Register () {
 
     const [mov, setMov] = useState({opacity:'', display:''})
     const [newt, setNewt ] = useState({opacity:'0%', display:'none'});
+    const [user, setUser] = useState({
+        name:'',
+        pass:'',
+    })
 
     const [NextStep, setNexStep] = useState(true)
     const history = useHistory()
 
     function movingEfect () {
-        setMov({opacity:'1%'})
-        setTimeout(()=>{
-            setMov({display:'none'});
-        }, 300)
-        setTimeout(()=>{
-            setNewt({opacity:'0%',display:'flex'});
-        },300)
-        setTimeout(()=>{
-            setNewt({opacity:'100%', display:'flex'})
-        }, 350)
+
+
+        if(user.name){
+            setMov({opacity:'1%'})
+            setTimeout(()=>{
+                setMov({display:'none'});
+            }, 300)
+            setTimeout(()=>{
+                setNewt({opacity:'0%',display:'flex'});
+            },300)
+            setTimeout(()=>{
+                setNewt({opacity:'100%', display:'flex'})
+            }, 350)
+        }
+        else {
+            alert('Please, set your name')
+        }
+
     }
 
     const logged = ()=>{
+
         setNexStep(false)
-        setRegister({...register, onSesion:true})
+        setRegister({...user, onSesion:true})
     }
 
     return (
@@ -48,13 +61,13 @@ export default function Register () {
                       display:mov.display
                   }}>
                       Name or Username
-                      <input placeholder='@username' className='register-input'/>
+                      <input value={user.name} onChange={e=>{setUser({...user, name:e.target.value})}} placeholder='@username' className='register-input'/>
                       <p className='text-sm text-gray  mt-2'>This field is necesary*</p>
                       <button className='m-3 font-bold text-2xl' onClick={movingEfect} type='button'>Next{'>'}</button>
                   </label>
                   <label className='font-bold' style={{display:newt.display, opacity:newt.opacity}}>
                       Password
-                      <input type='password' className='register-input'/>
+                      <input value={user.pass} onChange={e=>{setUser({...user, pass:e.target.value})}} type='password' className='register-input'/>
                       <p className='text-sm text-gray mt-2'>This field is necesary*</p>
                       <button className='text-blue text-2xl m-3 font-bold rounded' onClick={logged} type='button'>Finalize</button>
                   </label>

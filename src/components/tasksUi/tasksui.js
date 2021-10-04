@@ -1,17 +1,20 @@
 import { useContext, useEffect, useState } from "react"
+// import { AppLog } from "../../context/logs/LogSesion";
 import { dtsks } from "../../context/others/data/pts"
 import { GetTasks } from "../../context/others/data/tasks";
 import "./tasksui.scss"
 
+
 export default function TasksUi ({index, name, task, status, id}) {
 
     const [out, setOut] = useState('init');
-    const [data, setData] = useContext(GetTasks)
+    const [data, setData] = useContext(GetTasks);
+    // const [user] = useContext(AppLog)
+    const [btn, setBtn] = useState({s:false, cn:'OK'})
 
     const cntnBtn = ()=>status==='Resolved'?<button onClick={del} className='text-yellow font-semibold underline'>Delete</button>:(
-        <button onClick={resolve} className='text-blue font-semibold underline'>Resolved Now.</button>
+        <button onClick={resolve} className='text-blue font-semibold underline'>Resolve Now.</button>
     )
-
 
     function del (){
         const act = ()=>{
@@ -23,11 +26,50 @@ export default function TasksUi ({index, name, task, status, id}) {
         }
     }
 
+    //actualizate task
+    // const objC = {
+    //     isCompleted:true,
+    //     student:user.name,
+    //     task:task
+    // }
+
+
+
     function resolve () {
         const act = ()=>{
-            setData([...data, data.filter(e=>e.id!==id) ])
+            let nt = data.filter(e=>e.id===id)
+            nt = {...nt[0], isCompleted: true}
+            setData([...data.filter(e=>e.id!==id), nt])
+            return true
         }
-        act()
+        if(act()) {
+            act()
+            setBtn({s:true, cn:'End'})
+        }
+    }
+
+    function Unresolve () {
+        const act = ()=>{
+            let nt = data.filter(e=>e.id===id)
+            nt = {...nt[0], isCompleted: true}
+            setData([...data.filter(e=>e.id!==id), nt])
+            return true
+        }
+        if(act()) {
+            act()
+        }
+    }
+
+
+    const OnOk = ()=>{
+        if(!btn.s) {
+            setBtn({s:true, cn:'End'})
+            resolve()
+        }
+        else {
+            setBtn({s:false, cn:'OK'})
+            Unresolve()
+        }
     }
 
     useEffect(()=>{
@@ -48,7 +90,7 @@ export default function TasksUi ({index, name, task, status, id}) {
                 </div>
             </div>
             <div className='btn-resolve'>
-                <button className='font-bold'>OK</button>
+                <button onClick={OnOk} className='w-full h-full font-bold'>{btn.cn}</button>
             </div>
     </div>)
 }

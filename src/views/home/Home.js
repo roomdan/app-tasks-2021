@@ -6,17 +6,19 @@ import "./animation.css"
 import TasksUi from "../../components/tasksUi/tasksui"
 import { GetTasks } from "../../context/others/data/tasks"
 import { settsks } from "../../context/others/data/pts"
+import LoaderGeneral from "../../components/loaders/loaderGlobal"
 
 const Home = ({charging})=>{
 
     const [anim, setAnim ] = useState('');
     const [regs, setRegs ]= useState({task:''})
+    const [complete, setComplete] = useState(true)
 
     const history = useHistory()
     const [log] = useContext(AppLog)
 
     const objC = {
-        isCompleted:false,
+        isCompleted:true,
         student:log.name,
         task:regs.task
     }
@@ -37,14 +39,14 @@ const Home = ({charging})=>{
     },[data])
 
     function AddT () {
-        setData([...data, objC])
+        setData([...data, {...objC}])
         settsks(objC)
     }
 
-    const ctta = taskings?taskings.map((e,i)=>{
+    const ctta = taskings?taskings.filter(e=>e.isCompleted !== complete).map((e,i)=>{
         const result = ()=>e.isCompleted === true?'Resolved':'Unresolved'
-        return  <TasksUi index={i+1} name={log.name} task={e.task} id={e.id} status={result()} key={e.id}/>
-    }):'...loading...'
+            return  <TasksUi index={i+1} name={log.name} task={e.task} id={e.id} status={result()} key={e.id}/>
+    }):<div className='w-screen flex justify-center items-center h-64 bg-transparent'><LoaderGeneral/></div>
 
     return (
         log.onSesion?(
@@ -59,6 +61,10 @@ const Home = ({charging})=>{
                         </label>
                     </form>
                     <div className='items-laterals'><button className='config-btn md:h-12 h-8' onClick={()=>{console.log('config')}}></button></div>
+                </div>
+                <div className='w-full flex justify-center items-center mt-2 h-12 bg-transparent rounded'>
+                    <button className='p-3 bg-yellow font-bold m-3 rounded' onClick={()=>{setComplete(true)}}>Pending Tasks </button>
+                    <button className='p-3 bg-green font-bold m-3 rounded' onClick={()=>{setComplete(false)}}>See Completed</button>
                 </div>
                 <section className='w-screen heigth section-tasks p-3'>
                     {ctta}

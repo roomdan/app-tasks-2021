@@ -33,12 +33,11 @@ const settsks = async (data)=>{
     )
 }
 
-const uptsks = (id, data)=>{
+const uptsks = (data)=>{
     axios({
-        method:'PATCH',
+        method:'POST',
         baseURL:'https://todos-go.herokuapp.com/api',
         url:'/todos',
-        id:id,
         data:data
     })
 }

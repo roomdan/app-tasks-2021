@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 // import { AppLog } from "../../context/logs/LogSesion";
-import { dtsks } from "../../context/others/data/pts"
+import { dtsks, uptsks } from "../../context/others/data/pts"
 import { GetTasks } from "../../context/others/data/tasks";
 import "./tasksui.scss"
 
@@ -9,11 +9,9 @@ export default function TasksUi ({index, name, task, status, id}) {
 
     const [out, setOut] = useState('init');
     const [data, setData] = useContext(GetTasks);
-    // const [user] = useContext(AppLog)
-    const [btn, setBtn] = useState({s:false, cn:'OK'})
 
     const cntnBtn = ()=>status==='Resolved'?<button onClick={del} className='text-yellow font-semibold underline'>Delete</button>:(
-        <button onClick={resolve} className='text-blue font-semibold underline'>Resolve Now.</button>
+        <button onClick={resolve} className='text-blue font-semibold underline'>Resolve </button>
     )
 
     function del (){
@@ -26,51 +24,22 @@ export default function TasksUi ({index, name, task, status, id}) {
         }
     }
 
-    //actualizate task
-    // const objC = {
-    //     isCompleted:true,
-    //     student:user.name,
-    //     task:task
-    // }
-
-
 
     function resolve () {
-        const act = ()=>{
             let nt = data.filter(e=>e.id===id)
             nt = {...nt[0], isCompleted: true}
             setData([...data.filter(e=>e.id!==id), nt])
             return true
-        }
-        if(act()) {
-            act()
-            setBtn({s:true, cn:'End'})
-        }
+  
     }
 
-    function Unresolve () {
-        const act = ()=>{
-            let nt = data.filter(e=>e.id===id)
-            nt = {...nt[0], isCompleted: true}
-            setData([...data.filter(e=>e.id!==id), nt])
-            return true
-        }
-        if(act()) {
-            act()
-        }
-    }
+    function unresolve () {
+        let nt = data.filter(e=>e.id===id)
+        nt = {...nt[0], isCompleted: false}
+        setData([...data.filter(e=>e.id!==id), nt])
+        return true
 
-
-    const OnOk = ()=>{
-        if(!btn.s) {
-            setBtn({s:true, cn:'End'})
-            resolve()
-        }
-        else {
-            setBtn({s:false, cn:'OK'})
-            Unresolve()
-        }
-    }
+}
 
     useEffect(()=>{
         if(status === 'Resolved'){
@@ -78,6 +47,11 @@ export default function TasksUi ({index, name, task, status, id}) {
         }
         else {setOut('tasksui')}
     },[status])
+
+    const btnCont = ()=>{if(status === 'Unresolved') {return 'OK'} else {return 'END'}}
+    const ok = ()=>{
+        if(status === 'Unresolved'){resolve(); uptsks([...data, {id, isCompleted:true,  student:name, task}])}
+        else {unresolve()}}
 
     return (<div className={`${out} md:w-1/2 w-full`}>
             <div className='cntn-tsk-inf'>
@@ -90,7 +64,7 @@ export default function TasksUi ({index, name, task, status, id}) {
                 </div>
             </div>
             <div className='btn-resolve'>
-                <button onClick={OnOk} className='w-full h-full font-bold'>{btn.cn}</button>
+                <button onClick={ok} className='w-full h-full font-bold'>{btnCont()}</button>
             </div>
     </div>)
 }

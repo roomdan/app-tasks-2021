@@ -43,7 +43,7 @@ const Home = ({charging})=>{
         settsks(objC)
     }
 
-    const ctta = taskings?taskings.filter(e=>e.isCompleted !== complete).map((e,i)=>{
+    const ctta = taskings   ?taskings.filter(e=>e.isCompleted !== complete).map((e,i)=>{
         const result = ()=>e.isCompleted === true?'Resolved':'Unresolved'
             return  <TasksUi index={i+1} name={log.name} task={e.task} id={e.id} status={result()} key={e.id}/>
     }):<div className='w-screen flex justify-center items-center h-64 bg-transparent'><LoaderGeneral/></div>

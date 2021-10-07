@@ -1,7 +1,6 @@
 import { createContext, useEffect, useState } from "react"
 import { gtsks } from "./pts"
 
-
 const Tasks = ({children})=>{
 
     const [data, setData] = useState('');
@@ -12,7 +11,7 @@ const Tasks = ({children})=>{
             setData(a.data.todos);
         }
         gt()
-    },[])
+    },[data.length])
 
 return (
     <GetTasks.Provider value={[data, setData]}>{children}</GetTasks.Provider>

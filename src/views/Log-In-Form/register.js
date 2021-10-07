@@ -7,8 +7,8 @@ import "./animation.all.css"
 
 export default function Register () {
 
-
     const [register, setRegister] = useContext(AppLog);
+    
 
     const [mov, setMov] = useState({opacity:'', display:''})
     const [newt, setNewt ] = useState({opacity:'0%', display:'none'});
@@ -19,6 +19,7 @@ export default function Register () {
 
     const [NextStep, setNexStep] = useState(true)
     const history = useHistory()
+
 
     function movingEfect () {
 
